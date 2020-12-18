@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="authForm" (ngSubmit)="submit()">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input formControlName="email"></ion-input>
+        </ion-item>
+        <div
+          class="error"
+          *ngIf="authForm.get('email').touched && authForm.get('email').invalid"
+        >
+          <span>Enter valid email address. </span>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div
+          class="error"
+          *ngIf="authForm.get('password').touched && authForm.get('password').invalid"
+        >
+          <span> password must contain </span>
+        </div>
+        <ng-container *ngIf="title === 'Sign Up'">
+          <ion-item>
+            <ion-label position="floating">Confirm Password</ion-label>
+            <ion-input
+              type="password"
+              formControlName="confirmPassword"
+            ></ion-input>
+          </ion-item>
+          <div
+            class="error"
+            *ngIf="authForm.get('confirmPassword').touched && authForm.get('confirmPassword').invalid"
+          >
+            <span> Both password should match</span>
+          </div>
+        </ng-container>
+        <div style="margin-top: 3rem"></div>
+        <div class="error" *ngIf="authError !== null && authError !== ''">
+          <span>{{authError}}</span>
+        </div>
+        <ion-button
+          color="primary"
+          expand="full"
+          (click)="authForm.invalid ? submit(): submit()"
+        >
+          {{title}}
+        </ion-button>
+        <div style="margin-top: 1rem"></div>
+
+        <ion-button
+          color="primary"
+          expand="full"
+          (click)="navigateToOtherOption()"
+        >
+          {{otherOption}}
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

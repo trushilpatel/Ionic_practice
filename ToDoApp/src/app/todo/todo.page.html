@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-button slot="end" color="none" (click)="logout()">
+      <ion-icon name="log-out-outline"> </ion-icon
+    ></ion-button>
+    <ion-title>To Do</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let todo of getToDos()">
+      <ion-label> {{todo.title}} </ion-label>
+      <ion-button color="light" (click)="editToDo(todo)">
+        <ion-icon name="pencil-outline"> </ion-icon>
+      </ion-button>
+      <ion-button color="light" (click)="deleteToDo(todo)">
+        <ion-icon name="trash"> </ion-icon>
+      </ion-button>
+      <ion-checkbox
+        [ngModel]="todo.done"
+        (click)="changeToDoStatus(todo)"
+      ></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" (click)="addToDo()">
+    <ion-fab-button><ion-icon name="add"></ion-icon></ion-fab-button>
+  </ion-fab>
+</ion-content>

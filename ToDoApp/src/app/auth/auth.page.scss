@@ -1,0 +1,8 @@
+.error {
+  color: red;
+  font-size: smaller;
+  margin-bottom: 1rem;
+  ::before {
+    content: "* ";
+  }
+}
